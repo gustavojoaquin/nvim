@@ -2,13 +2,29 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     lazy = true,
-    event = 'BufRead',
+    event = 'VeryLazy',
+    cmd = {
+      'TSBufDisable',
+      'TSBufEnable',
+      'TSBufToggle',
+      'TSDisable',
+      'TSEnable',
+      'TSToggle',
+      'TSInstall',
+      'TSInstallInfo',
+      'TSInstallSync',
+      'TSModuleInfo',
+      'TSUninstall',
+      'TSUpdate',
+      'TSUpdateSync',
+    },
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       lazy = true,
     },
     build = ':TSUpdate',
-    opts = function(_, opts)
+    config = function()
+      local opts = {}
       opts.ensure_installed = {
         'lua',
         'vim',
@@ -48,6 +64,7 @@ return {
       opts.sync_install = true
       opts.highlight = { enable = true }
       opts.indent = { enable = true }
+      require('nvim-treesitter.configs').setup(opts)
     end,
   },
 }
