@@ -4,7 +4,7 @@ return {
     lazy = true,
     event = 'BufRead',
     dependencies = {
-      'nvim-treesitter/nvim-treesitter',
+      'nvim-treesitter/nvim-treesitter-textobjects',
       lazy = true,
     },
     build = ':TSUpdate',
