@@ -2,9 +2,7 @@ return {
 	{
 		'pmizio/typescript-tools.nvim',
 		lazy = true,
-		event = "VeryLazy",
-		ft="tsx js ts svelte",
-		-- event = 'BufRead *.ts *.js *.tsx *.jsx *.vue *.svelte',
+		event = 'VeryLazy',
 		dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
 		opts = {
 			settings = {
@@ -18,6 +16,7 @@ return {
 					includeInlayFunctionLikeReturnTypeHints = true,
 					includeInlayEnumMemberValueHints = true,
 				},
+				publish_diagnostic_on = 'change',
 			},
 		},
 	},
@@ -34,9 +33,11 @@ return {
 		cmd = 'TSC',
 		opts = {},
 	},
-	{
-		'yioneko/nvim-vtsls',
-		lazy = true,
-		opts = {},
-	},
+	-- {
+	-- 	'yioneko/nvim-vtsls',
+	-- 	lazy = true,
+	-- 	config = function()
+	-- 		require('vtsls').config { refactor_auto_rename = true }
+	-- 	end,
+	-- },
 }

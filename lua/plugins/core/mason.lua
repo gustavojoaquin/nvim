@@ -49,9 +49,10 @@ return {
         'html',
         'cssls',
         'yamlls',
-        'vtsls',
+        -- 'vtsls',
         'eslint',
         'svelte',
+        -- 'biome',
       }
       opts.handlers = {
         function(server_name)
@@ -77,37 +78,37 @@ return {
             settings = { Lua = { hint = { enable = true, arrayIndex = 'Disable' } } },
           }
         end,
-        vtsls = function()
-          require('lspconfig').vtsls.setup {
-            settings = {
-              typescript = {
-                updateImportsOnFileMove = { enabled = 'always' },
-                inlayHints = {
-                  parameterNames = { enabled = 'all' },
-                  parameterTypes = { enabled = true },
-                  variableTypes = { enabled = true },
-                  propertyDeclarationTypes = { enabled = true },
-                  functionLikeReturnTypes = { enabled = true },
-                  enumMemberValues = { enabled = true },
-                },
-              },
-              javascript = {
-                updateImportsOnFileMove = { enabled = 'always' },
-                inlayHints = {
-                  parameterNames = { enabled = 'literals' },
-                  parameterTypes = { enabled = true },
-                  variableTypes = { enabled = true },
-                  propertyDeclarationTypes = { enabled = true },
-                  functionLikeReturnTypes = { enabled = true },
-                  enumMemberValues = { enabled = true },
-                },
-              },
-              vtsls = {
-                enableMoveToFileCodeAction = true,
-              },
-            },
-          }
-        end,
+        -- vtsls = function()
+        --   require('lspconfig.configs').vtsls = require('vtsls').lspconfig
+        --   settings = {
+        --     typescript = {
+        --       updateImportsOnFileMove = { enabled = 'always' },
+        --       inlayHints = {
+        --         parameterNames = { enabled = 'all' },
+        --         parameterTypes = { enabled = true },
+        --         variableTypes = { enabled = true },
+        --         propertyDeclarationTypes = { enabled = true },
+        --         functionLikeReturnTypes = { enabled = true },
+        --         enumMemberValues = { enabled = true },
+        --       },
+        --     },
+        --     javascript = {
+        --       updateImportsOnFileMove = { enabled = 'always' },
+        --       inlayHints = {
+        --         parameterNames = { enabled = 'literals' },
+        --         parameterTypes = { enabled = true },
+        --         variableTypes = { enabled = true },
+        --         propertyDeclarationTypes = { enabled = true },
+        --         functionLikeReturnTypes = { enabled = true },
+        --         enumMemberValues = { enabled = true },
+        --       },
+        --     },
+        --     vtsls = {
+        --       enableMoveToFileCodeAction = true,
+        --     },
+        --   },
+        -- }
+        -- end,
         gopls = function()
           require('lspconfig').gopls.setup {
             settings = {
@@ -162,7 +163,20 @@ return {
           }
         end,
         svelte = function()
-          require('lspconfig').svelte.setup {}
+          require('lspconfig').svelte.setup {
+            settings = {
+              typescript = {
+                inlayHints = {
+                  parameterNames = { enabled = 'all' },
+                  parameterTypes = { enabled = true },
+                  variableTypes = { enabled = true },
+                  propertyDeclarationTypes = { enabled = true },
+                  functionLikeReturnTypes = { enabled = true },
+                  enumMemberValues = { enabled = true },
+                },
+              },
+            },
+          }
         end,
       }
     end,
