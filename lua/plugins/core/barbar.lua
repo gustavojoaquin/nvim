@@ -56,11 +56,10 @@ return {
       }
 
       local wk = require 'which-key'
-      wk.register({
-        ['<leader>b'] = {
-          name = ' Buffer',
-        },
-      }, { mode = { 'n' } })
+      wk.add {
+        '<leader>b',
+        group = ' Buffer',
+      }
       local opt = { noremap = true, silent = true, desc = '' }
 
       -- Magic buffer-picking mode

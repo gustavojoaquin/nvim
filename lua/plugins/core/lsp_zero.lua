@@ -2,6 +2,7 @@
 return {
   {
     'VonHeikemen/lsp-zero.nvim',
+    dependencies = { 'aznhe21/actions-preview.nvim' },
     lazy = true,
     event = 'BufRead',
     branch = 'v3.x',
@@ -18,8 +19,10 @@ return {
         vim.keymap.set('n', '<leader>ld', vim.lsp.buf.definition, { desc = 'Go to definition', buffer = bufnr })
         vim.keymap.set('n', '<leader>lm', vim.lsp.buf.implementation, { desc = 'Go to implementation', buffer = bufnr })
         vim.keymap.set('n', '<leader><C-k>', vim.lsp.buf.signature_help, { desc = 'Signature help', buffer = bufnr })
-        vim.keymap.set('n', '<leader>lw', vim.lsp.buf.add_workspace_folder, { desc = 'Add workspace folder', buffer = bufnr })
-        vim.keymap.set('n', '<leader>lr', vim.lsp.buf.remove_workspace_folder, { desc = 'Remove workspace folder', buffer = bufnr })
+        vim.keymap.set('n', '<leader>lw', vim.lsp.buf.add_workspace_folder,
+          { desc = 'Add workspace folder', buffer = bufnr })
+        vim.keymap.set('n', '<leader>lr', vim.lsp.buf.remove_workspace_folder,
+          { desc = 'Remove workspace folder', buffer = bufnr })
         vim.keymap.set('n', '<leader>ll', function()
           print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, { desc = 'List workspace folder', buffer = bufnr })

@@ -25,19 +25,15 @@ return {
         cancel = '<C-e>',
       }
 
-      wk.register {
-        ['<leader>'] = {
-          x = {
-            name = '  Trouble',
-          },
-        },
-        { mode = { 'n' } },
+      wk.add {
+        '<leader>x',
+        group = '  Trouble',
       }
+      -- require("trouble.sources.telescope").open()
       -- Lua
-      vim.keymap.set('n', '<leader>xx', '<cmd>TroubleToggle document_diagnostics<cr>',
+      vim.keymap.set('n', '<leader>xx', '<cmd>Trouble diagnostics toggle focus=false filter.buf=0 <cr>',
         { desc = 'Toggle document diagnostics' })
-      vim.keymap.set('n', '<leader>xw', '<cmd>TroubleToggle workspace_diagnostics<cr>',
-        { desc = 'Workspace diagnostics' })
+      vim.keymap.set('n', '<leader>xw', '<cmd>Trouble diagnostics toggle <cr>', { desc = 'Workspace diagnostics' })
       vim.keymap.set('n', '<leader>xd', '<cmd>TroubleToggle<cr>', { desc = 'Toggle diagnostics' })
       vim.keymap.set('n', '<leader>xq', function()
         require('trouble').toggle 'quickfix'

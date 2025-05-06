@@ -8,31 +8,28 @@ return {
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
       'MunifTanjim/nui.nvim',
-      '3rd/image.nvim',              -- Optional image support in preview window: See `# Preview Mode` for more information
+      -- '3rd/image.nvim',              -- Optional image support in preview window: See `# Preview Mode` for more information
       's1n7ax/nvim-window-picker',
     },
 
     opts = function(_, opts)
       local wk = require 'which-key'
       local mappings = {
+        mode = { 'v', 'n' },
+        { '<leader>e', '<cmd>Neotree toggle<cr>', desc = 'Toggle Explorer' },
         {
-          ['<leader>'] = {
-            e = { '<cmd>Neotree toggle<cr>', 'Toggle Explorer' },
-            o = {
-              function()
-                if vim.bo.filetype == 'neo-tree' then
-                  vim.cmd.wincmd 'p'
-                else
-                  vim.cmd.Neotree 'focus'
-                end
-              end,
-              'Toggle Explorer Focus',
-            },
-          },
+          '<leader>o',
+          function()
+            if vim.bo.filetype == 'neo-tree' then
+              vim.cmd.wincmd 'p'
+            else
+              vim.cmd.Neotree 'focus'
+            end
+          end,
+          desc = 'Toggle Explorer Focus',
         },
-        { mode = { 'v', 'n' } },
       }
-      wk.register(mappings)
+      wk.add(mappings)
 
       opts.enable_git_status = true
       opts.enable_diagnostics = true

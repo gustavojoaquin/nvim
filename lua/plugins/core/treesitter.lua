@@ -1,27 +1,15 @@
+-- if true then return {} end
 return {
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    event = 'VeryLazy',
+    lazy = true,
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  },
   {
     'nvim-treesitter/nvim-treesitter',
     lazy = true,
-    event = 'VeryLazy',
-    cmd = {
-      'TSBufDisable',
-      'TSBufEnable',
-      'TSBufToggle',
-      'TSDisable',
-      'TSEnable',
-      'TSToggle',
-      'TSInstall',
-      'TSInstallInfo',
-      'TSInstallSync',
-      'TSModuleInfo',
-      'TSUninstall',
-      'TSUpdate',
-      'TSUpdateSync',
-    },
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      lazy = true,
-    },
+    -- event = 'VeryLazy',
     build = ':TSUpdate',
     config = function()
       local opts = {}

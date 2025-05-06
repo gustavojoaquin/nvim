@@ -142,15 +142,14 @@ return {
         enabled = true,
         name = 'Crates',
       }
-      opts.src = {
+      opts.completion = {
         insert_closing_quote = true,
         text = {
-          prerelease = '  pre-release ',
-          yanked = '  yanked ',
+          prerelease = '   pre-release ',
+          yanked = '   yanked ',
         },
         cmp = {
           enabled = true,
-          name = 'crates.nvim',
           use_custom_kind = true,
           kind_text = {
             version = 'Version',
@@ -178,39 +177,38 @@ return {
       -- vim.keymap.set("n", "K", show_documentation, { silent = true })
 
       crates.setup(opts)
-      wk.register {
-        ['<leader>a'] = {
-          name = '󱧕 Crates',
-          t = { crates.toggle, 'Toggle Crate' },
-          r = { crates.reload, 'Reload Crate' },
 
-          v = { crates.show_versions_popup, 'Show Versions' },
-          f = { crates.show_features_popup, 'Show Features' },
-          d = { crates.show_dependencies_popup, 'Show Dependencies' },
-          s = { crates.show_popup, 'Show Crate' },
+      wk.add({
+        { "<leader>c", group = '󱧕 Crates' },
+        { "<leader>ct", crates.toggle, desc = 'Toggle Crate' },
+        { "<leader>cr", crates.reload, desc = 'Reload Crate' },
 
-          u = { crates.update_crate, 'Update Crate' },
-          a = { crates.update_all_crates, 'Update All Crates' },
-          U = { crates.upgrade_crate, 'Upgrade Crate' },
-          A = { crates.upgrade_all_crates, 'Upgrade All Crates' },
+        { "<leader>cv", crates.show_versions_popup, desc = 'Show Versions' },
+        { "<leader>cf", crates.show_features_popup, desc = 'Show Features' },
+        { "<leader>cd", crates.show_dependencies_popup, desc = 'Show Dependencies' },
+        { "<leader>cs", crates.show_popup, desc = 'Show Crate' },
 
-          x = { crates.expand_plain_crate_to_inline_table, 'Expand Crate' },
-          X = { crates.extract_crate_into_table, 'Extract Crate' },
+        { "<leader>cu", crates.update_crate, desc = 'Update Crate' },
+        { "<leader>ca", crates.update_all_crates, desc = 'Update All Crates' },
+        { "<leader>cU", crates.upgrade_crate, desc = 'Upgrade Crate' },
+        { "<leader>cA", crates.upgrade_all_crates, desc = 'Upgrade All Crates' },
 
-          H = { crates.open_homepage, 'Open Homepage' },
-          R = { crates.open_repository, 'Open Repository' },
-          D = { crates.open_documentation, 'Open Documentation' },
-          C = { crates.open_crates_io, 'Open Crates.io' },
-          K = { show_documentation, 'Show Documentation' },
-        },
-      }
-      wk.register({
-        ['<leader>a'] = {
-          name = '󱧕 Crates',
-          v = { crates.update_crates, 'Update Crates' },
-          V = { crates.upgrade_crates, 'Upgrade Crates' },
-        },
-      }, { mode = 'v' })
+        { "<leader>cx", crates.expand_plain_crate_to_inline_table, desc = 'Expand Crate' },
+        { "<leader>cX", crates.extract_crate_into_table, desc = 'Extract Crate' },
+
+        { "<leader>cH", crates.open_homepage, desc = 'Open Homepage' },
+        { "<leader>cR", crates.open_repository, desc = 'Open Repository' },
+        { "<leader>cD", crates.open_documentation, desc = 'Open Documentation' },
+        { "<leader>cC", crates.open_crates_io, desc = 'Open Crates.io' },
+        { "<leader>cK", show_documentation, desc = 'Show Documentation' },
+      })
+
+      wk.add({
+        mode = { "v" },
+        { "<leader>a", group = '󱧕 Crates' },
+        { "<leader>av", crates.update_crates, desc = "Update Crates" },
+        { "<leader>aV", crates.upgrade_crates, desc = "Upgraderade Crates" },
+      })
     end,
   },
   {
@@ -220,25 +218,21 @@ return {
     opts = function(_, opts)
       local wk = require 'which-key'
 
-      wk.register {
-        ['<leader>'] = {
-          r = {
-            name = ' Rust',
-            l = { require 'ferris.methods.view_memory_layout', 'Rust memory layouts' }, -- f = { "<cmd>Telescope find_files<cr>", "Find File" },
-            e = { require 'ferris.methods.expand_macro', 'Expand Macro' },
-            j = { require 'ferris.methods.join_lines', 'Join Lines' },
-            h = { require 'ferris.methods.view_hir', 'View HIR' },
-            m = { require 'ferris.methods.view_mir', 'View MIR' },
-            t = { require 'ferris.methods.view_item_tree', 'View Item Tree' },
-            s = { require 'ferris.methods.view_syntax_tree', 'View Syntax Tree' },
-            o = { require 'ferris.methods.open_cargo_toml', 'Open Cargo.toml' },
-            p = { require 'ferris.methods.open_parent_module', 'Open Parents Module' },
-            d = { require 'ferris.methods.open_documentation', 'Open Documentation' },
-            w = { require 'ferris.methods.reload_workspace', 'Reload Workspace' },
-            r = { require 'ferris.methods.rebuild_macros', 'Rebuild Macros' },
-          },
-        },
-      }
+      wk.add({
+        { "<leader>r", group = " Rust" },
+        { "<leader>rl", require 'ferris.methods.view_memory_layout', desc = 'Rust memory layouts' },
+        { "<leader>re", require 'ferris.methods.expand_macro', desc = 'Expand Macro' },
+        { "<leader>rj", require 'ferris.methods.join_lines', desc = 'Join Lines' },
+        { "<leader>rh", require 'ferris.methods.view_hir', desc = 'View HIR' },
+        { "<leader>rm", require 'ferris.methods.view_mir', desc = 'View MIR' },
+        { "<leader>rt", require 'ferris.methods.view_item_tree', desc = 'View Item Tree' },
+        { "<leader>rs", require 'ferris.methods.view_syntax_tree', desc = 'View Syntax Tree' },
+        { "<leader>ro", require 'ferris.methods.open_cargo_toml', desc = 'Open Cargo.toml' },
+        { "<leader>rp", require 'ferris.methods.open_parent_module', desc = 'Open Parents Module' },
+        { "<leader>rd", require 'ferris.methods.open_documentation', desc = 'Open Documentation' },
+        { "<leader>rw", require 'ferris.methods.reload_workspace', desc = 'Reload Workspace' },
+        { "<leader>rr", require 'ferris.methods.rebuild_macros', desc = 'Rebuild Macros' },
+      })
     end,
     -- your options here
   },

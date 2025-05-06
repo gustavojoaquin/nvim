@@ -12,5 +12,5 @@ end
 require 'custom_settings'
 vim.opt.rtp:prepend(lazypath)
 require 'lazy_config'
--- vim.cmd[[colorscheme tokyonight-night]]
-vim.cmd [[colorscheme kanagawa-wave]]
+vim.cmd[[colorscheme tokyonight-night]]
+-- vim.cmd [[colorscheme kanagawa-wave]]

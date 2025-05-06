@@ -39,27 +39,15 @@ return {
       {
         'williamboman/mason.nvim',
         opts = function(_, opts)
-          opts.registries = {
-            'github:nvim-java/mason-registry',
-            'github:mason-org/mason-registry',
-          }
+          if not opts.registries then
+            opts.registries = { 'github:mason-org/mason-registry' }
+          end
+          table.insert(opts.registries, 1, 'github:nvim-java/mason-registry')
         end,
       },
     },
     config = function()
-      require('java').setup {
-        settings = {
-          java = {
-            inlayHints = {
-              parameterNames = {
-                enabled = 'all',
-                exclusions = { 'this' },
-              },
-            },
-          },
-        },
-      }
-      -- require('lspconfig').jdtls.setup()
+      require('java').setup()
     end,
   },
 }

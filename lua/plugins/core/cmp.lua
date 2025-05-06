@@ -7,6 +7,8 @@ local source_mapping = {
   otter = '[Otter]',
   codeium = '[CI]',
   luasnip = '[LUS]',
+  cmdline = '[Cmdline]',
+  nvimai_cmp_source = '[NvimAI]'
 }
 
 return {
@@ -53,14 +55,15 @@ return {
       }
 
       opts.sources = cmp.config.sources {
-        { name = 'cmp_tabnine', priority = 750 },
-        { name = 'nvim_lsp',    priority = 1000 },
-        { name = 'luasnip',     priority = 900 },
-        { name = 'buffer',      priority = 800 },
-        { name = 'path',        priority = 700 },
-        { name = 'emoji',       priority = 650 },
-        { name = 'otter',       priority = 850 },
-        { name = 'codeium',     priority = 825 },
+        { name = 'cmp_tabnine',       priority = 750 },
+        { name = 'nvim_lsp',          priority = 1000 },
+        { name = 'luasnip',           priority = 900 },
+        { name = 'buffer',            priority = 800 },
+        { name = 'path',              priority = 700 },
+        { name = 'emoji',             priority = 650 },
+        { name = 'otter',             priority = 850 },
+        { name = 'codeium',           priority = 950 },
+        { name = 'nvimai_cmp_source', priority = 925 },
       }
       opts.formatting = {
         fields = { 'kind', 'abbr', 'menu' },
@@ -91,10 +94,14 @@ return {
               vim_item.kind = vim_item.kind .. ' ' .. '[ML]'
             end
           end
-          local maxwidth = 40
+          -- if vim_item.kind == ' Color' then
+          --   vim_item=require("nvim-highlight-colors").format
+          -- end
+          local maxwidth = 45
           vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
           return vim_item
         end,
+        -- format = require("nvim-highlight-colors").format
         -- format = lspkind_status_ok and lspkind.cmp_format(astronvim.lspkind) or nil,
       }
       opts.snippet = {

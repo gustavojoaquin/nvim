@@ -4,9 +4,10 @@ return {
 	event = 'BufRead',
 	opts = function(_, opts)
 		local wk = require 'which-key'
-		wk.register { {
-			['<leader>g'] = { name = '󰊢  GitSigns' },
-		}, { mode = { 'v', 'n' } } }
+		wk.add {
+			mode = { 'n', 'v' },
+			{ '<leader>g', group = '󰊢  GitSigns' },
+		}
 		opts.on_attach = function(bufnr)
 			local gitsigns = require 'gitsigns'
 

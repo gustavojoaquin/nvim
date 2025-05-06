@@ -5,6 +5,12 @@ return {
     opts = {
       ensure_installed = { 'codelldb', 'delve', 'javadbg', 'javatest', 'python', 'js' },
       handlers = {
+        function(config)
+          -- all sources with no handler get passed here
+
+          -- Keep original functionality
+          require('mason-nvim-dap').default_setup(config)
+        end,
         python = function() end,
       },
     },
@@ -28,6 +34,7 @@ return {
     dependencies = {
       'williamboman/mason.nvim',
       'neovim/nvim-lspconfig',
+      'nvim-java/nvim-java',
     },
     -- dependencies = { "VonHeikemen/lsp-zero.nvim" },
     lazy = true,
@@ -43,7 +50,8 @@ return {
         'lemminx',
         'lua_ls',
         'pyright',
-        'typst_lsp',
+        -- 'typst_lsp',
+        "tinymist",
         'taplo',
         'tailwindcss',
         'html',
@@ -78,6 +86,41 @@ return {
             settings = { Lua = { hint = { enable = true, arrayIndex = 'Disable' } } },
           }
         end,
+        jdtls = function()
+          require('lspconfig').jdtls.setup {
+            settings = {
+              java = {
+                inlayHints = {
+                  parameterNames = {
+                    enabled = 'all',
+                    exclusions = { 'this' },
+                  },
+                },
+              },
+            },
+          }
+        end,
+        tinymist = function()
+          require('lspconfig').tinymist.setup {
+            root_dir = function(filename, bufnr)
+              return vim.fn.getcwd()
+            end,
+            -- settings = {
+            --   tinymist = {
+            --     formatterMode = "typstyle",
+            --   }
+            -- }
+          }
+        end,
+
+        intelephense = function()
+          require("lspconfig").intelephense.setup({
+            root_dir = function()
+              return vim.fn.getcwd()
+            end
+          })
+        end,
+
         -- vtsls = function()
         --   require('lspconfig.configs').vtsls = require('vtsls').lspconfig
         --   settings = {

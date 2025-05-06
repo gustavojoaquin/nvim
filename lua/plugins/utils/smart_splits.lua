@@ -3,56 +3,64 @@ return {
   event = 'VeryLazy', -- load on very lazy for mux detection
   opts = function(_, opts)
     local wk = require 'which-key'
-    wk.register({
-      ['<C-H>'] = {
+    wk.add {
+      {
+        '<C-H>',
         function()
           require('smart-splits').move_cursor_left()
         end,
-        'Move to left split',
+        desc = 'Move to left split',
       },
-      ['<C-J>'] = {
+      {
+        '<C-J>',
         function()
           require('smart-splits').move_cursor_down()
         end,
-        'Move to below split',
+        desc = 'Move to below split',
       },
-      ['<C-K>'] = {
+      {
+        '<C-K>',
         function()
           require('smart-splits').move_cursor_up()
         end,
-        'Move to above split',
+        desc = 'Move to above split',
       },
-      ['<C-L>'] = {
+      {
+        '<C-L>',
         function()
           require('smart-splits').move_cursor_right()
         end,
-        'Move to right split',
+        desc = 'Move to right split',
       },
-      ['<C-Up>'] = {
+      {
+        '<C-Up>',
         function()
           require('smart-splits').resize_up()
         end,
-        'Resize split up',
+        desc = 'Resize split up',
       },
-      ['<C-Down>'] = {
+      {
+        '<C-Down>',
         function()
           require('smart-splits').resize_down()
         end,
-        'Resize split down',
+        desc = 'Resize split down',
       },
-      ['<C-Left>'] = {
+      {
+        '<C-Left>',
         function()
           require('smart-splits').resize_left()
         end,
-        'Resize split left',
+        desc = 'Resize split left',
       },
-      ['<C-Right>'] = {
+      {
+        '<C-Right>',
         function()
           require('smart-splits').resize_right()
         end,
-        'Resize split right',
+        desc = 'Resize split right',
       },
-    }, { mode = { 'n' } })
+    }
     opts.ignored_filetypes = { 'nofile', 'quickfix', 'qf', 'prompt' }
     opts.ignored_buftypes = { 'nofile' }
   end,

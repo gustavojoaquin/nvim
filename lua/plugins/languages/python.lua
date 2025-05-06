@@ -2,14 +2,18 @@
 return {
   {
     'linux-cultist/venv-selector.nvim',
-    event = 'BufRead *.py',
+    lazy = true,
+    event = 'BufEnter *.py',
+    branch = 'regexp',
     dependencies = {
       'neovim/nvim-lspconfig',
       'nvim-telescope/telescope.nvim',
       'mfussenegger/nvim-dap-python',
     },
     opts = function(_, opts)
+      opts.auto_refresh = true
       vim.keymap.set('n', '<leader>lv', '<Cmd>VenvSelect<CR>', { desc = 'Select VirtualEnv' })
+      vim.keymap.set('n', '<leader>lV', '<Cmd>VenvSelectCached<CR>', { desc = 'Select VirtualEnv (cache)' })
     end,
     cmd = { 'VenvSelect', 'VenvSelectCached' },
   },

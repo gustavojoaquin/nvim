@@ -9,32 +9,23 @@ return {
     keys = nil,
     opts = function(_, opts)
       local wk = require 'which-key'
-      wk.register({
-        ['<leader>'] = {
-          m = {
-            name = '󱢓 Multiple cursors',
-            a = { '<Cmd>MultipleCursorsAddMatches<CR>', 'Add Matches' }, -- f = { "<cmd>Telescope find_files<cr>", "Find File" },
-            A = { '<Cmd>MultipleCursorsAddMatchesV<CR>', 'Add Matches (Limited by Visual Area)' },
-            j = { '<Cmd>MultipleCursorsAddJumpNextMatch<CR>', 'Jump Next Add Match' },
-            n = { '<Cmd>MultipleCursorsJumpNextMatch<CR>', 'Jump Next Match' },
-            t = { '<Cmd>MultipleCursorsLockToggle<CR>', 'Toggle Lock or Unlock Multiple Cursors' },
-          },
-        },
-      }, { mode = { 'n', 'v' } })
-      wk.register({
-        ['<C-n>'] = {
-          '<Cmd>MultipleCursorsAddDown<CR>',
-          'Add Multiple Cursors Down',
-        },
+      wk.add {
+        { '<leader>m', group = '󱢓 Multiple cursors' },
+        { '<leader>ma', '<Cmd>MultipleCursorsAddMatches<CR>', desc = 'Add Matches' }, -- f = { "<cmd>Telescope find_files<cr>", "Find File" },
+        { '<leader>mA', '<Cmd>MultipleCursorsAddMatchesV<CR>', desc = 'Add Matches (Limited by Visual Area)' },
+        { '<leader>mj', '<Cmd>MultipleCursorsAddJumpNextMatch<CR>', desc = 'Jump Next Add Match' },
+        { '<leader>mn', '<Cmd>MultipleCursorsJumpNextMatch<CR>', desc = 'Jump Next Match' },
+        { '<leader>mt', '<Cmd>MultipleCursorsLockToggle<CR>', desc = 'Toggle Lock or Unlock Multiple Cursors' },
+      }
+      wk.add {
+        mode = { 'i', 'n' },
+        { '<C-n>',         '<Cmd>MultipleCursorsAddDown<CR>',        desc = 'Add Multiple Cursors Down' },
         -- ['<C-m>'] = {
         --   '<Cmd>MultipleCursorsAddUp<CR>',
         --   'Add Multiple Cursors Up',
         -- },
-        ['<C-LeftMouse>'] = {
-          '<Cmd>MultipleCursorsMouseAddDelete<CR>',
-          'Add Multiple Cursors with Mouse',
-        },
-      }, { mode = { 'n', 'i' } })
+        { '<C-LeftMouse>', '<Cmd>MultipleCursorsMouseAddDelete<CR>', desc = 'Add Multiple Cursors with Mouse' },
+      }
       return opts
     end,
   },
