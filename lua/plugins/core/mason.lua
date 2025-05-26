@@ -34,7 +34,6 @@ return {
     dependencies = {
       'williamboman/mason.nvim',
       'neovim/nvim-lspconfig',
-      'nvim-java/nvim-java',
     },
     -- dependencies = { "VonHeikemen/lsp-zero.nvim" },
     lazy = true,

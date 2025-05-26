@@ -22,13 +22,7 @@ return {
     dependencies = 'mfussenegger/nvim-dap',
     ft = 'python', -- NOTE: ft: lazy-load on filetype
     config = function(_, opts)
-      local path = require('mason-registry').get_package('debugpy'):get_install_path()
-      if vim.fn.has 'win32' == 1 then
-        path = path .. '/venv/Scripts/python'
-      else
-        path = path .. '/venv/bin/python'
-      end
-      require('dap-python').setup(path, opts)
+      require('dap-python').setup("python3", opts)
     end,
   },
   {
