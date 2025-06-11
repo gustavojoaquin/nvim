@@ -1,10 +1,11 @@
-return {
-  {
-    'stevearc/dressing.nvim',
-    lazy = true,
-    opts = {
-      input = { default_prompt = '➤ ' },
-      select = { backend = { 'telescope', 'builtin' } },
-    },
-  },
-}
+if true then return {} end
+-- return {
+--   {
+--     'stevearc/dressing.nvim',
+--     lazy = true,
+--     opts = {
+--       input = { default_prompt = '➤ ' },
+--       select = { backend = { 'telescope', 'builtin' } },
+--     },
+--   },
+-- }
