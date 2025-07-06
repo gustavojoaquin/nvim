@@ -55,6 +55,9 @@ return {
 					api_key_name = "DEEPSEEK_API_KEY",
 					endpoint = "https://api.deepseek.com",
 					model = "deepseek-reasoner",
+					extra_request_body = {
+            temperature = 0.8,
+          },
 				},
 			},
 			web_search_engine = {
