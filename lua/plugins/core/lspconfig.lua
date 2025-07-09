@@ -1,8 +1,8 @@
 return {
   'neovim/nvim-lspconfig',
-  dependencies = 'VonHeikemen/lsp-zero.nvim',
+  dependencies = {'VonHeikemen/lsp-zero.nvim', 'williamboman/mason-lspconfig.nvim'},
   lazy = true,
-  event = 'BufRead',
+  event = { "BufReadPost", "BufNewFile", "BufWritePre" },
   config = function()
     require('which-key').add {
       mode = { 'n', 'v' },

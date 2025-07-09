@@ -37,7 +37,6 @@ return {
     },
     -- dependencies = { "VonHeikemen/lsp-zero.nvim" },
     lazy = true,
-    event = 'BufRead',
     opts = function(_, opts)
       local lsp_zero = require 'lsp-zero'
 
